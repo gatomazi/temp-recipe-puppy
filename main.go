@@ -128,8 +128,6 @@ func filterRecipe() http.Handler {
 			}
 		}
 
-		
-
 		page, _ := strconv.Atoi(keyP)
 		maxPerPage := 4
 		if page <= 0 {
@@ -138,8 +136,7 @@ func filterRecipe() http.Handler {
 		maxToShow := page * maxPerPage
 		tamArrRecipe := len(recipesArray)
 
-
-		if len(keyI) > 0 || len(keykeyQI) > 0 {
+		if len(keyI) > 0 || len(keyQ) > 0 {
 			if tamArrRecipe == 0 {
 				recipes.Recipes = recipesArray
 			} else if maxToShow > tamArrRecipe {
