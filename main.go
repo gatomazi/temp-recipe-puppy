@@ -103,8 +103,7 @@ func filterRecipe() http.Handler {
 					}
 				}
 
-			}
-			if len(keyQ) > 0 {
+			} else if len(keyQ) > 0 {
 				recipeTitles := strings.Split(recipes.Recipes[i].Title, " ")
 				paramTitles := strings.Split(strings.TrimSpace(keyQ), " ")
 
@@ -125,6 +124,8 @@ func filterRecipe() http.Handler {
 						break
 					}
 				}
+			} else {
+				recipesArray = append(recipesArray, recipes.Recipes[i])
 			}
 		}
 
@@ -136,21 +137,19 @@ func filterRecipe() http.Handler {
 		maxToShow := page * maxPerPage
 		tamArrRecipe := len(recipesArray)
 
-		if len(keyI) > 0 || len(keyQ) > 0 {
-			if tamArrRecipe == 0 {
-				recipes.Recipes = recipesArray
-			} else if maxToShow > tamArrRecipe {
+		if tamArrRecipe == 0 {
+			recipes.Recipes = recipesArray
+		} else if maxToShow > tamArrRecipe {
 
-				if tamArrRecipe-maxToShow <= 0 && page > 1 {
-					recipes.Recipes = nil
-				} else if tamArrRecipe-maxPerPage <= 0 {
-					recipes.Recipes = recipesArray[0:tamArrRecipe]
-				} else {
-					recipes.Recipes = recipesArray[maxToShow-maxPerPage : tamArrRecipe]
-				}
+			if tamArrRecipe-maxToShow <= 0 && page > 1 {
+				recipes.Recipes = nil
+			} else if tamArrRecipe-maxPerPage <= 0 {
+				recipes.Recipes = recipesArray[0:tamArrRecipe]
 			} else {
-				recipes.Recipes = recipesArray[maxToShow-maxPerPage : maxToShow]
+				recipes.Recipes = recipesArray[maxToShow-maxPerPage : tamArrRecipe]
 			}
+		} else {
+			recipes.Recipes = recipesArray[maxToShow-maxPerPage : maxToShow]
 		}
 
 		response, _ := json.Marshal(recipes)
