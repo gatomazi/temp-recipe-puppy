@@ -31,8 +31,6 @@ type Recipes struct {
 }
 
 //PORT port to be used
-const PORT = "8080"
-
 func main() {
 
 	r := mux.NewRouter()
@@ -40,11 +38,20 @@ func main() {
 	r.Queries("i", "{i}", "q", "{q}", "p", "{p}")
 	r.Handle("/api/", filterRecipe()).Methods("GET", "OPTIONS")
 
+	port := ""
+
+	if len(os.Getenv("PORT")) > 0 {
+		port = os.Getenv("PORT")
+	} else {
+		port = "8080"
+
+	}
+
 	logger := log.New(os.Stderr, "logger: ", log.Lshortfile)
 	srv := &http.Server{
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
-		Addr:         ":" + PORT,
+		Addr:         ":" + port,
 		Handler:      context.ClearHandler(http.DefaultServeMux),
 		ErrorLog:     logger,
 	}
