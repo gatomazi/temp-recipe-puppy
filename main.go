@@ -34,7 +34,7 @@ type Recipes struct {
 const PORT = "8080"
 
 func main() {
-	fmt.Println("aDSADSADADAD")
+
 	r := mux.NewRouter()
 	http.Handle("/", r)
 	r.Queries("i", "{i}", "q", "{q}", "p", "{p}")
@@ -62,7 +62,7 @@ func filterRecipe() http.Handler {
 		keyI := keys.Get("i")
 		keyQ := keys.Get("q")
 		keyP := keys.Get("p")
-		fmt.Println(keyI)
+
 		// Open our jsonFile
 		jsonFile, err := os.Open("recipes.json")
 		// if we os.Open returns an error then handle it
