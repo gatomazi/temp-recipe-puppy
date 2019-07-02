@@ -3,7 +3,7 @@
 	"heroku": {
 		"goVersion": "go1.12",
 		"install": [
-			"./github.com/gorilla"
+			"./..."
 		]
 	},
 	"ignore": "test",
