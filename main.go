@@ -139,7 +139,7 @@ func filterRecipe() http.Handler {
 		tamArrRecipe := len(recipesArray)
 
 
-		if len(keyI) > 0 || if len(keykeyQI) > 0 {
+		if len(keyI) > 0 || len(keykeyQI) > 0 {
 			if tamArrRecipe == 0 {
 				recipes.Recipes = recipesArray
 			} else if maxToShow > tamArrRecipe {
