@@ -7,6 +7,19 @@
 		]
 	},
 	"ignore": "test",
-	"package": [],
+	"package": [
+		{
+			"checksumSHA1": "66S00P4GDH4ng1B/hWWQX1+vdRY=",
+			"path": "github.com/gorilla/context",
+			"revision": "8559d4a6b87e4f517ec1846eb90a192b8748cc89",
+			"revisionTime": "2019-06-27T02:46:05Z"
+		},
+		{
+			"checksumSHA1": "1sZHZ+GG0ZnW2vEMimIjWif2Oj4=",
+			"path": "github.com/gorilla/mux",
+			"revision": "d83b6ffe499a29cc05fc977988d0392851779620",
+			"revisionTime": "2019-07-01T20:26:33Z"
+		}
+	],
 	"rootPath": "temp-recipe-puppy"
 }
