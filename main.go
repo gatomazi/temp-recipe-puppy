@@ -128,6 +128,8 @@ func filterRecipe() http.Handler {
 			}
 		}
 
+		
+
 		page, _ := strconv.Atoi(keyP)
 		maxPerPage := 4
 		if page <= 0 {
@@ -136,19 +138,22 @@ func filterRecipe() http.Handler {
 		maxToShow := page * maxPerPage
 		tamArrRecipe := len(recipesArray)
 
-		if tamArrRecipe == 0 {
-			recipes.Recipes = recipesArray
-		} else if maxToShow > tamArrRecipe {
 
-			if tamArrRecipe-maxToShow <= 0 && page > 1 {
-				recipes.Recipes = nil
-			} else if tamArrRecipe-maxPerPage <= 0 {
-				recipes.Recipes = recipesArray[0:tamArrRecipe]
+		if len(keyI) > 0 || if len(keykeyQI) > 0 {
+			if tamArrRecipe == 0 {
+				recipes.Recipes = recipesArray
+			} else if maxToShow > tamArrRecipe {
+
+				if tamArrRecipe-maxToShow <= 0 && page > 1 {
+					recipes.Recipes = nil
+				} else if tamArrRecipe-maxPerPage <= 0 {
+					recipes.Recipes = recipesArray[0:tamArrRecipe]
+				} else {
+					recipes.Recipes = recipesArray[maxToShow-maxPerPage : tamArrRecipe]
+				}
 			} else {
-				recipes.Recipes = recipesArray[maxToShow-maxPerPage : tamArrRecipe]
+				recipes.Recipes = recipesArray[maxToShow-maxPerPage : maxToShow]
 			}
-		} else {
-			recipes.Recipes = recipesArray[maxToShow-maxPerPage : maxToShow]
 		}
 
 		response, _ := json.Marshal(recipes)
