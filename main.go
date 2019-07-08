@@ -85,8 +85,10 @@ func filterRecipe() http.Handler {
 		for i := 0; i < len(recipes.Recipes); i++ {
 			found := false
 			if len(keyI) > 0 {
-				recipeIngredients := strings.Split(recipes.Recipes[i].Ingredients, ",")
-				paramIngredients := strings.Split(keyI, ",")
+				recipeIngredients := strings.Split(recipes.Recipes[i].Ingredients, ", ")
+
+				keyI = strings.ReplaceAll(keyI, "%20", " ")
+				paramIngredients := strings.Split(keyI, ", ")
 
 				for _, paramIngredient := range paramIngredients {
 					for _, recipeIngredient := range recipeIngredients {
