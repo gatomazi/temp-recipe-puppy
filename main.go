@@ -88,7 +88,8 @@ func filterRecipe() http.Handler {
 				recipeIngredients := strings.Split(recipes.Recipes[i].Ingredients, ", ")
 
 				keyI = strings.ReplaceAll(keyI, "%20", " ")
-				paramIngredients := strings.Split(keyI, ", ")
+				keyI = strings.ReplaceAll(keyI, " ", "")
+				paramIngredients := strings.Split(keyI, ",")
 
 				for _, paramIngredient := range paramIngredients {
 					for _, recipeIngredient := range recipeIngredients {
